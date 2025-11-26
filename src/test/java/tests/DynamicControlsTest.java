@@ -16,7 +16,5 @@ public class DynamicControlsTest extends BaseTest {
         dynamicControlsPage.waitAfterDisableButtonClicked();
 
         assertTrue(dynamicControlsPage.inputIsEnabled(), "инпут неактивен");
-
-
     }
 }

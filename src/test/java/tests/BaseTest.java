@@ -32,7 +32,6 @@ public class BaseTest {
         contextMenuPage = new ContextMenuPage(driver);
         fileUploadPage = new FileUploadPage(driver);
         framesPage = new FramesPage(driver);
-
     }
 
     @AfterMethod(alwaysRun = true)
