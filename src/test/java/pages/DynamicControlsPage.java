@@ -3,9 +3,15 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import static org.testng.Assert.assertEquals;
 
 public class DynamicControlsPage extends BasePage {
+
+    protected By removeCheckboxButton = By.xpath("//button[@onclick='swapCheckbox()']");
+    protected By itsGoneTextDisplayed = By.xpath("//form[@id='checkbox-example']//p");
+    protected By inputField = By.xpath("//input[@type='text']");
+    protected By enableButton = By.xpath("//button[@onclick='swapInput()']");
+    protected By itsEnableDisplayed = By.xpath("//form[@id='input-example']//p");
+
     public DynamicControlsPage(WebDriver driver) {
         super(driver);
     }
@@ -15,28 +21,26 @@ public class DynamicControlsPage extends BasePage {
     }
 
     public void clickOnRemoveButton() {
-        driver.findElement(By.xpath("//button[@onclick='swapCheckbox()']")).click();
+        driver.findElement(removeCheckboxButton).click();
     }
 
     public void waitAfterRemoveButtonClicked() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@id='checkbox-example']//p"))).isDisplayed();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(itsGoneTextDisplayed)).isDisplayed();
     }
 
-    public void textItsGoneIsDisplayed() {
-        String itsGoneText = driver.findElement(By.xpath("//form[@id='checkbox-example']//p")).getText();
-        assertEquals(itsGoneText, "It's gone!", "текст Its gone не отображается");
+    public String textItsGoneIsDisplayed() {
+        return driver.findElement(itsGoneTextDisplayed).getText();
     }
 
     public boolean inputIsEnabled() {
-        boolean isInputEnabled = driver.findElement(By.xpath("//input[@type='text']")).isEnabled();
-        return isInputEnabled;
+        return driver.findElement(inputField).isEnabled();
     }
 
     public void clickOnEnableButton() {
-        driver.findElement(By.xpath("//button[@onclick='swapInput()']")).click();
+        driver.findElement(enableButton).click();
     }
 
     public void waitAfterDisableButtonClicked() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@id='input-example']//p"))).isDisplayed();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(itsEnableDisplayed)).isDisplayed();
     }
 }

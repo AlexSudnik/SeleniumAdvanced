@@ -7,7 +7,11 @@ import org.openqa.selenium.interactions.Actions;
 
 import static org.testng.Assert.assertEquals;
 
+
 public class ContextMenuPage extends BasePage {
+
+    protected By contextArea = By.id("hot-spot");
+
     public ContextMenuPage(WebDriver driver) {
         super(driver);
     }
@@ -18,9 +22,7 @@ public class ContextMenuPage extends BasePage {
 
     public void contextClick() {
         Actions actions = new Actions(driver);
-        actions.contextClick(driver.findElement(By.id("hot-spot")))
-                .build()
-                .perform();
+        actions.contextClick(driver.findElement(contextArea)).build().perform();
     }
 
     public void alertTextValidate() {
@@ -32,7 +34,5 @@ public class ContextMenuPage extends BasePage {
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
-
-
 }
 

@@ -8,6 +8,9 @@ public class DynamicControlsTest extends BaseTest {
         dynamicControlsPage.open();
         dynamicControlsPage.clickOnRemoveButton();
         dynamicControlsPage.waitAfterRemoveButtonClicked();
+
+        assertEquals(dynamicControlsPage.textItsGoneIsDisplayed(), "It's gone!", "текст Its gone не отображается");
+
         dynamicControlsPage.textItsGoneIsDisplayed();
 
         assertFalse(dynamicControlsPage.inputIsEnabled(), "инпут активен");
